@@ -10,7 +10,7 @@ import MyHeader from './Header';
 class App extends Component{
   constructor() {
     super();
-    this.state = { image: null };
+    this.data = { image: null };
   }
 
 
@@ -18,8 +18,8 @@ class App extends Component{
   pickImage() {
     // openSelectDialog(config, successCallback, errorCallback);
     ImagePickerIOS.openSelectDialog({}, imageUri => {
-      this.setState({ image: imageUri });
-    }, error => console.error(error));
+      data.setState({ image: imageUri });
+    }, error => console.warn(error));
   }
 
   render() {
@@ -41,10 +41,9 @@ class App extends Component{
           <Button rounded info style = {{padding: '10%', alignSelf: 'center'}} onPress={this.pickImage}>
             <Text>Upload</Text>
           </Button>
-          {this.state.image?
-          <Image style={{ flex: 1 }} source={{ uri: this.state.image }} /> :
-          null
-        }
+          { this.data.image ? <Image style={{height: 100, width: 100}} source={{uri: this.data.image}} /> : null }
+
+          
         </Content>
         <Footer>
           <FooterTab>
