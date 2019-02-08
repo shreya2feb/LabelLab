@@ -8,9 +8,7 @@ class MyHeader extends Component{
     	<Container>
         <Header noShadow>
           <Left>
-            <Button transparent>
-              <Icon name="arrow-back" />
-            </Button>
+
           </Left>
           <Body>
             <Title>LabelLab</Title>
