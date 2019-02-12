@@ -7,57 +7,47 @@ import { Container,Content, Button,Icon, Text,Header,Left,Body,Right,Title,Foote
 import MyHeader from './Header';
 
 
-const createFormData = (photo, body) => {
-  const data = new FormData();
-
-  data.append("photo", {
-    name: 'imageName.png',
-    type: 'image/png',
-    uri:
-       photo.image
-  });
-
-    Object.keys(body).forEach(key => {
-    data.append(key, body[key]);
-  });
-
-  // console.warn(data);
-  return data;
-
-};
-
 class App extends Component{
   constructor() {
     super();
-    this.state = { image: null };
-    // this.pickImage = this.pickImage.bind(this);
+    this.state = { image: null ,type:null};
   }
 
 
 
   pickImage(event) {
     // openSelectDialog(config, successCallback, errorCallback);
-    ImagePickerIOS.openSelectDialog({}, imageUri => {
-      this.setState({ image: imageUri });
+    ImagePickerIOS.openSelectDialog({}, (imageUri, imageType) => {
+      this.setState({ image: imageUri,type : imageType });
     }, error => console.warn(error));
   }
 
   uploadImage(event) {
-    let body = new FormData();
-    body.append('photo', {uri: this.state.image, name: 'photo.png',filename :'imageName.png',type: 'image/png'});
-    body.append('Content-Type', 'image/png');
-    // console.warn(body)
-    fetch("http://localhost:3000/listUsers",{ method: 'POST',headers:{  
-     "Content-Type": "multipart/form-data",
-     "otherHeader": "foo",
-     },
-     body: {"height": "hfufjjhgjhgh",}
-     })
-  .then((res) => checkStatus(res))
-  .then((res) => res.json())
-  .then((res) => { console.log("response" +JSON.stringify(res)); })
-  .catch((e) => console.log(e))
-  .done()
+
+    var body = new FormData();
+        body.append('photo', {
+          uri : this.state.image,
+          name: 'photo.jpeg',
+          type: 'image/jpeg'});
+
+
+    fetch("http://localhost:3000/listUsers", {
+        method: 'POST',
+        headers:{
+          'Accept':'application/json',
+          'Content-Type':'multipart/form-data',
+        },
+        body:body
+      })
+        .then(response => response.json())
+        .then(response => {
+          console.log("upload succes", response);
+          alert("Upload success!");
+        })
+        .catch(error => {
+          console.log("upload error", error);
+          alert("Upload failed!");
+        });
   }
 
   render() {
