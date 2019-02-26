@@ -41,8 +41,7 @@ class App extends Component{
       })
         .then(response => response.json())
         .then(response => {
-          console.log("upload succes", response);
-          alert("Upload success!");
+          alert(response.message);
         })
         .catch(error => {
           console.log("upload error", error);
@@ -68,13 +67,13 @@ class App extends Component{
         <Content contentContainerStyle={{ justifyContent: 'center',flex:1 }}>
 
           <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
-            <Button vertical info style = {{ alignSelf: 'center'}} onPress={this.pickImage.bind(this)} >
+            <Button vertical info style = {{ alignSelf: 'center'}} >
               <Icon name="camera" />
               <Text>Camera</Text>
             </Button>
 
-            <Button vertical info style = {{alignSelf: 'center'}} onPress={this.uploadImage.bind(this)}>
-              <Icon name="gallery" />
+            <Button vertical info style = {{alignSelf: 'center',marginLeft:'10%'}} onPress={this.pickImage.bind(this)} >
+              <Icon name="grid" />
               <Text>Gallery</Text>
             </Button>
           </View>
@@ -82,7 +81,6 @@ class App extends Component{
           { this.state.image ? <Image style={{height: 300, width: 300, padding: '10%', marginTop:'10%', marginBottom:'10%' , alignSelf: 'center'}} source={{uri: this.state.image}} /> : <Image style={{height: 300, width: 300, padding: '10%', marginTop:'10%', marginBottom:'10%' , alignSelf: 'center'}} source={require('./img/img_placeholder.png')} /> }
         
         <Button vertical info style = {{alignSelf: 'center'}} onPress={this.uploadImage.bind(this)}>
-              <Icon name="upload" />
               <Text>upload</Text>
         </Button>
           

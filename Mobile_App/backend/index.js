@@ -15,6 +15,9 @@ const Storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: Storage});
+const time_now = Date.now();
+
+const respose_filename = "photo_"+time_now;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,7 +26,7 @@ app.post('/listUsers', upload.array('photo', 1), (req, res, next) => {
   console.log('file', req.file)
   console.log('body', req.body)
   res.status(200).json({
-    message: 'success!',
+    message: respose_filename,
   })
 })
 
