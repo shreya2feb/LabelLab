@@ -3,14 +3,15 @@ import {
   ImagePickerIOS,
   Image,
 } from 'react-native';
-import { Container,Content, Button,Icon, Text,Header,Left,Body,Right,Title,Footer, FooterTab, Badge } from 'native-base';
+import { View,Container,Content, Button,Icon, Text,Header,Left,Body,Right,Title,Footer, FooterTab, Badge } from 'native-base';
 import MyHeader from './Header';
 
 
 class App extends Component{
+
   constructor() {
     super();
-    this.state = { image: null ,type:null};
+    this.state = { image: null,type:null};
   }
 
 
@@ -64,21 +65,26 @@ class App extends Component{
             </Button>
         </Right>
         </Header>
-        <Content contentContainerStyle={{ justifyContent: 'center', flex: 1 }}>
+        <Content contentContainerStyle={{ justifyContent: 'center',flex:1 }}>
 
+          <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
+            <Button vertical info style = {{ alignSelf: 'center'}} onPress={this.pickImage.bind(this)} >
+              <Icon name="camera" />
+              <Text>Camera</Text>
+            </Button>
 
-          <Button vertical info style = {{ alignSelf: 'center'}} onPress={this.pickImage.bind(this)}>
-            <Icon name="camera" />
-            <Text>Camera</Text>
-          </Button>
+            <Button vertical info style = {{alignSelf: 'center'}} onPress={this.uploadImage.bind(this)}>
+              <Icon name="gallery" />
+              <Text>Gallery</Text>
+            </Button>
+          </View>
 
-          <Button vertical info style = {{alignSelf: 'center'}} onPress={this.uploadImage.bind(this)}>
-            <Icon name="camera" />
-            <Text>Camera</Text>
-          </Button>
-
-          { this.state.image ? <Image style={{height: 300, width: 300, padding: '10%', alignSelf: 'center'}} source={{uri: this.state.image}} /> : null }
-
+          { this.state.image ? <Image style={{height: 300, width: 300, padding: '10%', marginTop:'10%', marginBottom:'10%' , alignSelf: 'center'}} source={{uri: this.state.image}} /> : <Image style={{height: 300, width: 300, padding: '10%', marginTop:'10%', marginBottom:'10%' , alignSelf: 'center'}} source={require('./img/img_placeholder.png')} /> }
+        
+        <Button vertical info style = {{alignSelf: 'center'}} onPress={this.uploadImage.bind(this)}>
+              <Icon name="upload" />
+              <Text>upload</Text>
+        </Button>
           
         </Content>
         <Footer>
