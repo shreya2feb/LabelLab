@@ -41,7 +41,7 @@ class App extends Component{
       })
         .then(response => response.json())
         .then(response => {
-          alert(response.message);
+          alert("your " + response.message + " is uploaded successfully");
         })
         .catch(error => {
           console.log("upload error", error);
