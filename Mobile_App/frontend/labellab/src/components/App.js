@@ -16,7 +16,6 @@ class App extends Component{
 
 
   pickImage(event) {
-    // openSelectDialog(config, successCallback, errorCallback);
     ImagePickerIOS.openSelectDialog({}, (imageUri, imageType) => {
       this.setState({ image: imageUri,type : imageType });
     }, error => console.warn(error));
@@ -57,7 +56,7 @@ class App extends Component{
         <Left>
           </Left>
           <Body>
-            <Title>Header</Title>
+            <Title>Labellab</Title>
           </Body>
           <Right>
             <Button transparent>
@@ -66,13 +65,20 @@ class App extends Component{
         </Right>
         </Header>
         <Content contentContainerStyle={{ justifyContent: 'center', flex: 1 }}>
-          <Button rounded info style = {{padding: '10%', alignSelf: 'center'}} onPress={this.pickImage.bind(this)}>
-            <Text>Choose</Text>
+
+
+          <Button vertical info style = {{ alignSelf: 'center'}} onPress={this.pickImage.bind(this)}>
+            <Icon name="camera" />
+            <Text>Camera</Text>
           </Button>
-          { this.state.image ? <Image style={{height: 100, width: 100}} source={{uri: this.state.image}} /> : null }
-          <Button rounded info style = {{padding: '10%', alignSelf: 'center'}} onPress={this.uploadImage.bind(this)}>
-            <Text>Upload</Text>
+
+          <Button vertical info style = {{alignSelf: 'center'}} onPress={this.uploadImage.bind(this)}>
+            <Icon name="camera" />
+            <Text>Camera</Text>
           </Button>
+
+          { this.state.image ? <Image style={{height: 300, width: 300, padding: '10%', alignSelf: 'center'}} source={{uri: this.state.image}} /> : null }
+
           
         </Content>
         <Footer>
