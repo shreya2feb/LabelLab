@@ -52,7 +52,7 @@ class App extends Component{
           type: 'image/jpeg'});
 
 
-    fetch("http://192.168.0.6:3000/listUsers", {
+    fetch("http://labellabmobile.herokuapp.com/upload", {
         method: 'POST',
         headers:{
           'Accept':'application/json',
@@ -108,7 +108,7 @@ class App extends Component{
         <Content contentContainerStyle={{ justifyContent: 'center',flex:1 }}>
 
           <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
-            <Button vertical info style = {{ alignSelf: 'center'}} onPress={this.camera_toggle}>
+            <Button vertical info style = {{ alignSelf: 'center'}} onPress={this.camera_toggle.bind(this)}>
               <Icon name="camera" />
               <Text>Camera</Text>
             </Button>
