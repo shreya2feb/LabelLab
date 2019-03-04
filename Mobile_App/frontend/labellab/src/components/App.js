@@ -42,22 +42,15 @@ class App extends Component{
 
   }
 
-  uploadImage(event) {
- 
+ async uploadImage(event) {
     var body = new FormData();
         body.append('photo', {
           // uri : Platform.OS === "android" ? this.state.image : this.state.image.replace("file://", ""),
           uri :this.state.image,
           name: 'photo.jpeg',
           type: 'image/jpeg'});
-
-
-    fetch("http://labellabmobile.herokuapp.com/upload", {
+    return fetch("http://labellabmobile.herokuapp.com/upload", {
         method: 'POST',
-        headers:{
-          'Accept':'application/json',
-          'Content-Type':'multipart/form-data',
-        },
         body:body
       })
         .then(response => response.json())
@@ -65,8 +58,8 @@ class App extends Component{
           alert("your " + response.message + " is uploaded successfully");
         })
         .catch(error => {
-          console.log("upload error", error);
-          alert("Upload failed!");
+          alert(error);
+          // alert("Upload failed!");
         });
   }
 
