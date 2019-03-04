@@ -43,15 +43,16 @@ class App extends Component{
   }
 
   uploadImage(event) {
-
+ 
     var body = new FormData();
         body.append('photo', {
-          uri : this.state.image,
+          // uri : Platform.OS === "android" ? this.state.image : this.state.image.replace("file://", ""),
+          uri :this.state.image,
           name: 'photo.jpeg',
           type: 'image/jpeg'});
 
 
-    fetch("http://localhost:3000/listUsers", {
+    fetch("http://192.168.0.6:3000/listUsers", {
         method: 'POST',
         headers:{
           'Accept':'application/json',

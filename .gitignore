@@ -24,6 +24,10 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+# node modules
+
+Mobile_App/backend/node_modules
+Mobile_App/frontend/node_modules
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
