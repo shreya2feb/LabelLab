@@ -4,7 +4,8 @@
   "description": "An AI app for image classification",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jshint index.js"
   },
   "author": "scorelab",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "multer": "^1.4.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.6.0"
   }
 }
