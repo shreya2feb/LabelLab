@@ -68,7 +68,7 @@ class App extends Component{
       };
 
 
-    return fetch("http://10.0.2.2:3000/upload", fetchData)
+    return fetch("http://labellabmobile.herokuapp.com/upload", fetchData)
         .then(response => response.json())
         .then(response => {
           alert(response.message);
@@ -93,7 +93,7 @@ class App extends Component{
       // You can also display the image using data:
       //const source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-      this.setState({ image: source.uri });
+      this.setState({ image: source.uri,type: response.type });
     }
   });
   }
